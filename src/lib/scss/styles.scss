@@ -1,0 +1,136 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--main-font: Inter;
+	--Fill-Brand-default: #ff8516;
+	--Fill-Brand-hover: #ff761e;
+	--Fill-Brand-pressed: #ff660f;
+	--Text-Primary: #eceae9;
+	--Fill-0-default: #1b1817;
+    --Text-Secondary-default: #afadac;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	position: relative;
+	min-width: 320px;
+	font-size: 16px;
+	font-family: var(--main-font);
+	min-height: 100vh;
+	background-color: var(--Fill-0-default);
+	color: var(--Text-Primary);
+	font-weight: 400;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-color: rgba(27, 24, 23, 0.7);
+		z-index: 1;
+	}
+}
+
+a,
+button,
+input,
+textarea,
+div,
+picture {
+	-webkit-tap-highlight-color: transparent;
+}
+
+button {
+	border: none;
+	background: none;
+	font-family: inherit;
+	color: inherit;
+	font-size: inherit;
+}
+
+.main {
+	text-align: center;
+}
+
+.button {
+	cursor: pointer;
+	text-decoration: none;
+
+	&-primary {
+		background-color: var(--Fill-Brand-default);
+		padding: 12px 18px;
+		border-radius: 14px;
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 24px;
+		min-width: 200px;
+		transition: background-color 0.2s ease-in-out;
+
+		&:hover {
+			background-color: var(--Fill-Brand-hover);
+		}
+
+		&:active {
+			background-color: var(--Fill-Brand-pressed);
+		}
+	}
+}
+
+h1 {
+	font-size: 50px;
+	margin-bottom: 50px;
+	rotate: -3deg;
+}
+
+h2 {
+	font-weight: 400;
+    color: var(--Text-Secondary-default);
+}
+
+.main-picture img {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	z-index: 0;
+}
+
+.main {
+	position: relative;
+	z-index: 2;
+
+	.button {
+		margin: 40px 0 60px;
+	}
+}
+
+.rw {
+	opacity: 0.6;
+	font-weight: 300;
+	font-size: 14px;
+}
+
+.quote {
+	display: inline-block;
+	overflow: visible;
+	background-image: url('/images/quotes.svg'), url('/images/quotes2.svg');
+	background-repeat: no-repeat;
+	background-position:
+		left 0 top 0,
+		right 0 bottom 10px;
+	background-size: auto 40px;
+	padding: 40px 60px;
+    margin-top: 40px;
+    span {
+        display: block;
+        text-align: right;
+        font-size: 14px;
+        margin-top: 24px;
+        color: var(--Text-Secondary-default);
+    }
+}
