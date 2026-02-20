@@ -1,11 +1,27 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
 	import { resolve } from '$app/paths';
 	import { fade } from 'svelte/transition';
 	import { step } from '$lib/store';
 	import type { SubpageType } from '$lib/types';
 	import PictureResponsive from '../common/PictureResponsive.svelte';
-	import Questions from '../Questions/Questions.svelte';
+	import Loader from '../common/Loader.svelte';
+	import { Questions } from '../Questions';
+	import { Result } from '../Result';
 	export let subpage: SubpageType;
+
+	let timer: ReturnType<typeof setTimeout> | null = null;
+
+	$: if ($step === 'loading' && !timer) {
+		timer = setTimeout(() => {
+			step.set('result');
+			timer = null;
+		}, 1000);
+	}
+
+	onDestroy(() => {
+		if (timer) clearTimeout(timer);
+	});
 </script>
 
 <PictureResponsive
@@ -15,8 +31,8 @@
 />
 
 {#if $step === 'main'}
-	<div class="main">
-		<h1>Investment<br />Matchmaker</h1>
+	<div class="main content">
+		<h1 class="h1">Investment<br />Matchmaker</h1>
 		<h2>1 minute. 5 questions. No registration and deposit required.</h2>
 		<p class="quote">
 			The best time to invest was yesterday.<br />The second best time is now.<br />The sooner you
@@ -36,8 +52,16 @@
 		</div>
 		<p class="rw">The match is informational and not an investment recommendation</p>
 	</div>
-{:else}
+{:else if $step === 'questions'}
 	<div class="questions" in:fade>
 		<Questions />
+	</div>
+{:else if $step === 'loading'}
+	<div class="main">
+		<Loader />
+	</div>
+{:else}
+	<div class="main" in:fade>
+		<Result />
 	</div>
 {/if}

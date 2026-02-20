@@ -29,3 +29,36 @@ export default [
 // Casa = 79%
 // Capital Bear = 60%
 // IQ Broker =72%
+
+export const brandsData = [
+	{
+		brand: 'IQ Option',
+		percent: '95',
+		link: 'https://brokeriqoption.com/en/register',
+		afftrack: 'iqbutton'
+	},
+	{
+		brand: 'Exnova',
+		percent: '86',
+		link: 'https://trade.exnova.com/en/register',
+		afftrack: 'exnovabutton'
+	},
+	{
+		brand: 'CasaTrade',
+		percent: '79',
+		link: 'https://trade.casatrade.com/en/register',
+		afftrack: 'casabutton'
+	},
+	{
+		brand: 'Capital Bear',
+		percent: '60',
+		link: 'https://trade.capitalbear.com/en/register',
+		afftrack: 'capitalbbutton'
+	},
+	{
+		brand: 'IQ Broker',
+		percent: '72',
+		link: 'https://trade.iqbroker.com/en/register',
+		afftrack: 'iqbrokerbutton'
+	}
+];

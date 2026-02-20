@@ -61,6 +61,12 @@ button {
 .button {
 	cursor: pointer;
 	text-decoration: none;
+	color: var(--Text-Primary);
+
+	&:disabled {
+		opacity: 0.5;
+		pointer-events: none;
+	}
 
 	&-primary {
 		background-color: var(--Fill-Brand-default);
@@ -82,10 +88,11 @@ button {
 	}
 }
 
-h1 {
+.h1 {
 	font-size: 50px;
 	margin-bottom: 50px;
 	rotate: -3deg;
+	font-weight: bold;
 }
 
 h2 {
@@ -104,7 +111,7 @@ h2 {
 	position: relative;
 	z-index: 2;
 
-	.button {
+	&.content .button {
 		margin: 40px 0 60px;
 	}
 }
@@ -137,13 +144,37 @@ h2 {
 
 .questions {
 	padding: 50px;
-	background-color: rgba(27, 24, 23, 0.8);
+	background-color: rgba(27, 24, 23, 1);
 	position: relative;
 	border-radius: 20px;
 	z-index: 2;
+	width: 450px;
+	max-width: 85%;
+	box-shadow: 0 6px 16px rgba(27, 24, 23, 0.25);
 
 	&-btn-wrap {
 		text-align: center;
+	}
+
+	&-progres {
+		list-style-type: none;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		margin-top: 40px;
+
+		li {
+			display: block;
+			width: 6px;
+			height: 6px;
+			border-radius: 6px;
+			outline: 2px solid var(--Text-Secondary-default);
+
+			&.active {
+				background-color: var(--Text-Secondary-default);
+			}
+		}
 	}
 }
 
@@ -155,8 +186,6 @@ h2 {
 	}
 
 	&-content {
-		width: 450px;
-        max-width: 85%;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
@@ -222,4 +251,12 @@ h2 {
 			}
 		}
 	}
+}
+
+.back {
+	color: var(--Text-Secondary-default);
+	text-align: center;
+	width: 100%;
+	margin-top: 40px;
+	cursor: pointer;
 }

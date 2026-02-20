@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { writable } from 'svelte/store';
 	import { fly } from 'svelte/transition';
-	import { idx, question } from '$lib/store';
+	import { idx, question, questionsAmouns, step } from '$lib/store';
 
 	export const answerId = writable<number | null>(null);
 
@@ -17,8 +17,8 @@
 			{#each $question.a as a, i}
 				<button
 					class="question-answer"
-					class:question-answer-checked={i === $answerId}
-					on:click={() => setAnswer(i)}
+					class:question-answer-checked={i === $answerId - 1}
+					on:click={() => setAnswer(i + 1)}
 				>
 					{a}
 				</button>
@@ -29,13 +29,36 @@
 
 <div class="questions-btn-wrap">
 	<button
+		disabled={!$answerId}
 		class="button button-primary"
 		on:click={(e) => {
 			e.preventDefault();
+
+			if ($idx === $questionsAmouns) {
+				step.set('loading');
+			}
 			idx.set($idx + 1);
+
 			answerId.set(null);
 		}}
 	>
 		Next
 	</button>
 </div>
+
+<ul class="questions-progres">
+	{#each new Array($questionsAmouns) as i, index}
+		<li class:active={index === $idx - 1}></li>
+	{/each}
+</ul>
+
+<button
+	class="back"
+	on:click={() => {
+		step.set('main');
+		setAnswer(null);
+        idx.set(1);
+	}}
+>
+	Back to start
+</button>
