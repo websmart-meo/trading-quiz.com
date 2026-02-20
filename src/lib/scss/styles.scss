@@ -27,6 +27,10 @@ body {
 	background-color: var(--Fill-0-default);
 	color: var(--Text-Primary);
 	font-weight: 400;
+	background-image: url(/images/bgr/v1-desk@1x.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 
 	&::before {
 		content: '';

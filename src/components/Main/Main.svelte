@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import { resolve } from '$app/paths';
+	// import { resolve } from '$app/paths';
 	import { fade } from 'svelte/transition';
 	import { step } from '$lib/store';
 	import type { SubpageType } from '$lib/types';
-	import PictureResponsive from '../common/PictureResponsive.svelte';
+	// import PictureResponsive from '../common/PictureResponsive.svelte';
 	import Loader from '../common/Loader.svelte';
 	import { Questions } from '../Questions';
 	import { Result } from '../Result';
@@ -24,11 +24,11 @@
 	});
 </script>
 
-<PictureResponsive
+<!-- <PictureResponsive
 	fallbackFormat="jpg"
 	basePath={resolve(`/images/bgr/${subpage}-`)}
 	classes="main-picture"
-/>
+/> -->
 
 {#if $step === 'main'}
 	<div class="main content">

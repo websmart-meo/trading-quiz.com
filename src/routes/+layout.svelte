@@ -29,5 +29,5 @@
 	{@html `<script>${gtmScriptString}<\/script>`}
 </svelte:head>
 
-
+<slot />
 <Main {subpage} />
