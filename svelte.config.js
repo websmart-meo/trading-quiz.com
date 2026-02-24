@@ -8,7 +8,7 @@ const config = {
 			base: process.env.NODE_ENV === 'production' ? '/trading-quiz.com' : ''
 		},
 		prerender: {
-			entries: ['/v1', '/']
+			entries: ['/v1', '/v2', '/v3', '/']
 		}
 	}
 };
