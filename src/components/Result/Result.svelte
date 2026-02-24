@@ -19,7 +19,10 @@
 			<div class="img-wrap">
 				<img src={icons[idx]} alt="" />
 			</div>
-			<a href={`${i.link}?aff=${aff}&afftrack=${aff}_${i.afftrack}`} class="brand-link button button-primary">
+			<a
+				href={`${i.link}?aff=${aff}&afftrack=${aff}_${i.afftrack}`}
+				class="brand-link button button-primary"
+			>
 				Go to the site
 			</a>
 		</li>
@@ -33,27 +36,41 @@
 		align-items: center;
 		justify-content: center;
 		gap: 40px;
+		flex-wrap: wrap;
 	}
 	.percent {
-		font-size: 30px;
+		font-size: 20px;
+		@media screen and (min-width: 480px) {
+			font-size: 30px;
+		}
 	}
 
 	li {
 		display: flex;
 		flex-direction: column;
-        align-items: center;
-		gap: 32px;
+		align-items: center;
+		gap: 16px;
+		@media screen and (min-width: 480px) {
+			gap: 32px;
+		}
 	}
 
 	.img-wrap {
-		width: 150px;
-		height: 150px;
-		border-radius: 150px;
 		background-color: var(--Text-Primary);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		box-shadow: 0 6px 16px rgba(27, 24, 23, 0.25);
+
+		width: 80px;
+		height: 80px;
+		border-radius: 80px;
+
+		@media screen and (min-width: 480px) {
+			width: 150px;
+			height: 150px;
+			border-radius: 150px;
+		}
 
 		img {
 			width: 85%;

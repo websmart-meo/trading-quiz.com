@@ -30,4 +30,6 @@
 </svelte:head>
 
 <slot />
-<Main {subpage} />
+<div class="app app-{subpage}">
+	<Main {subpage} />
+</div>

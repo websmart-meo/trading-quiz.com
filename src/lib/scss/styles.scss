@@ -15,22 +15,34 @@
 }
 
 body {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	position: relative;
 	min-width: 320px;
 	font-size: 16px;
 	font-family: var(--main-font);
-	min-height: 100vh;
 	background-color: var(--Fill-0-default);
 	color: var(--Text-Primary);
 	font-weight: 400;
-	background-image: url(/images/bgr/v1-desk@1x.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+}
+
+.app {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center center;
+	position: relative;
+	overflow: hidden;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&-v1 {
+		background-image: url(/images/bgr/v1-desk@1x.webp);
+	}
+	&-v2 {
+		background-image: url(/images/bgr/v2-desk@1x.webp);
+	}
+	&-v3 {
+		background-image: url(/images/bgr/v3-desk@1x.webp);
+	}
 
 	&::before {
 		content: '';
@@ -58,10 +70,6 @@ button {
 	font-size: inherit;
 }
 
-.main {
-	text-align: center;
-}
-
 .button {
 	cursor: pointer;
 	text-decoration: none;
@@ -74,12 +82,11 @@ button {
 
 	&-primary {
 		background-color: var(--Fill-Brand-default);
-		padding: 12px 18px;
+		padding: 12px 24px;
 		border-radius: 14px;
 		font-size: 18px;
 		font-weight: 500;
 		line-height: 24px;
-		min-width: 200px;
 		transition: background-color 0.2s ease-in-out;
 
 		&:hover {
@@ -93,15 +100,25 @@ button {
 }
 
 .h1 {
-	font-size: 50px;
+	font-size: 32px;
 	margin-bottom: 50px;
 	rotate: -3deg;
 	font-weight: bold;
+
+	@media screen and (min-width: 480px) {
+		font-size: 50px;
+        margin-bottom: 70px;
+	}
 }
 
 h2 {
 	font-weight: 400;
 	color: var(--Text-Secondary-default);
+	font-size: 20px;
+
+	@media screen and (min-width: 480px) {
+		font-size: 24px;
+	}
 }
 
 .main-picture img {
@@ -114,6 +131,7 @@ h2 {
 .main {
 	position: relative;
 	z-index: 2;
+	text-align: center;
 
 	&.content .button {
 		margin: 40px 0 60px;
@@ -124,6 +142,22 @@ h2 {
 	opacity: 0.6;
 	font-weight: 300;
 	font-size: 14px;
+}
+
+.bgr {
+	background-color: rgba(27, 24, 23, 0.8);
+	margin: 50px auto;
+	max-width: 85%;
+	border-radius: 20px;
+	padding: 50px 24px;
+
+	@media screen and (min-width: 480px) {
+		padding: 50px;
+	}
+
+	@media screen and (min-width: 1024px) {
+		padding: 70px 50px;
+	}
 }
 
 .quote {
@@ -147,14 +181,15 @@ h2 {
 }
 
 .questions {
-	padding: 50px;
-	background-color: rgba(27, 24, 23, 1);
+	padding: 50px 24px;
 	position: relative;
-	border-radius: 20px;
 	z-index: 2;
 	width: 450px;
-	max-width: 85%;
 	box-shadow: 0 6px 16px rgba(27, 24, 23, 0.25);
+
+	@media screen and (min-width: 480px) {
+		padding: 50px;
+	}
 
 	&-btn-wrap {
 		text-align: center;

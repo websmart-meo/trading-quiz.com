@@ -31,7 +31,7 @@
 /> -->
 
 {#if $step === 'main'}
-	<div class="main content">
+	<div class="main content bgr">
 		<h1 class="h1">Investment<br />Matchmaker</h1>
 		<h2>1 minute. 5 questions. No registration and deposit required.</h2>
 		<p class="quote">
@@ -53,7 +53,7 @@
 		<p class="rw">The match is informational and not an investment recommendation</p>
 	</div>
 {:else if $step === 'questions'}
-	<div class="questions" in:fade>
+	<div class="questions bgr" in:fade>
 		<Questions />
 	</div>
 {:else if $step === 'loading'}
@@ -61,7 +61,7 @@
 		<Loader />
 	</div>
 {:else}
-	<div class="main" in:fade>
+	<div class="main bgr" in:fade>
 		<Result />
 	</div>
 {/if}
