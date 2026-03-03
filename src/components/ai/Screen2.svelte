@@ -29,7 +29,9 @@
 			duration: mobile ? 180 : 240,
 			easing: quintIn,
 			css: (t: number, u: number) =>
-				mobile ? `opacity: ${t};` : `transform: translateX(${u * -dir * 80}%); opacity: ${t};`
+				mobile
+					? `opacity: ${t}; position: absolute; top: 0; left: 0; right: 0;`
+					: `transform: translateX(${u * -dir * 80}%); opacity: ${t};`
 		};
 	}
 
@@ -436,13 +438,5 @@
 			position: relative;
 		}
 
-		.answers-container {
-			height: auto;
-			overflow: visible;
-		}
-
-		.answers {
-			position: static;
-		}
 	}
 </style>
