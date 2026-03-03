@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 	import { gtm, gtmIdIQOption } from '$lib/gtm';
 	const gtmScriptString = gtm(gtmIdIQOption);
 	import Main from '../components/Main/Main.svelte';
@@ -30,6 +31,8 @@
 </svelte:head>
 
 <slot />
-<div class="app app-{subpage}">
-	<Main {subpage} />
-</div>
+{#if $page.route.id !== '/ai'}
+	<div class="app app-{subpage}">
+		<Main {subpage} />
+	</div>
+{/if}
