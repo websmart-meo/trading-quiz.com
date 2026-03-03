@@ -13,6 +13,7 @@
 	function questionIn(node: Element, { dir = 1 }: { dir: number }) {
 		const mobile = window.matchMedia('(max-width: 767px)').matches;
 		return {
+			delay: mobile ? 180 : 0,
 			duration: mobile ? 260 : 400,
 			easing: quintOut,
 			css: (t: number, u: number) =>
@@ -45,7 +46,10 @@
 
 <svelte:window
 	on:keydown={(e) => {
-		if (e.key === 'Enter' && selectedAnswer !== null) onNext();
+		if (e.key === 'Enter' && selectedAnswer !== null) {
+			e.preventDefault();
+			onNext();
+		}
 	}}
 />
 
@@ -56,109 +60,112 @@
 		<img class="bg-blur" src={imgBlur} alt="" />
 	</div>
 
-	<!-- Sliding quiz card -->
-	<div class="card-container">
+	<!-- Question box (static frame, only text slides) -->
+	<div class="question-box">
+		{#key questionIndex}
+			<p
+				class="question-text"
+				in:questionIn={{ dir: direction }}
+				out:questionOut={{ dir: direction }}
+			>{question.q}</p>
+		{/key}
+	</div>
+
+	<!-- Progress (static) -->
+	<div class="progress-section">
+		<p class="progress-label">Question {questionIndex + 1} of {questions.length}</p>
+		<div class="progress-bar">
+			<div class="progress-fill" style="width: {progress * 100}%"></div>
+		</div>
+	</div>
+
+	<!-- Answers (slide on question change) -->
+	<div class="answers-container">
 		{#key questionIndex}
 			<div
-				class="quiz-card"
+				class="answers"
 				in:questionIn={{ dir: direction }}
 				out:questionOut={{ dir: direction }}
 			>
-				<!-- Question box -->
-				<div class="question-box">
-					<p class="question-text">{question.q}</p>
-				</div>
-
-				<!-- Progress -->
-				<div class="progress-section">
-					<p class="progress-label">Question {questionIndex + 1} of {questions.length}</p>
-					<div class="progress-bar">
-						<div class="progress-fill" style="width: {progress * 100}%"></div>
-					</div>
-				</div>
-
-				<!-- Answers -->
-				<div class="answers">
-					{#each question.a as answer, i}
-						<button
-							class="answer-item"
-							class:selected={selectedAnswer === i}
-							on:click={() => onSelect(i)}
-						>
-							<span class="answer-text">{answer}</span>
-							<span class="answer-icon" aria-hidden="true">
-								{#if selectedAnswer === i}
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 18.6667 18.6667"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<path
-											d={checkPath}
-											stroke="#ff8516"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-										/>
-									</svg>
-								{:else}
-									<svg
-										width="20"
-										height="20"
-										viewBox="0 0 20 20"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<circle cx="10" cy="10" r="9" stroke="#6d6764" stroke-width="1.5" />
-									</svg>
-								{/if}
-							</span>
-						</button>
-					{/each}
-				</div>
-
-				<!-- Navigation -->
-				<div class="nav">
-					<button class="nav-back" on:click={onPrev} aria-label="Previous question">
-						<svg
-							width="20"
-							height="20"
-							viewBox="0 0 20 20"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M15.8332 10H4.1665M4.1665 10L9.1665 15M4.1665 10L9.1665 5"
-								stroke="#eceae9"
-								stroke-width="1.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							/>
-						</svg>
+				{#each question.a as answer, i}
+					<button
+						class="answer-item"
+						class:selected={selectedAnswer === i}
+						on:click={() => onSelect(i)}
+					>
+						<span class="answer-text">{answer}</span>
+						<span class="answer-icon" aria-hidden="true">
+							{#if selectedAnswer === i}
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 18.6667 18.6667"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d={checkPath}
+										stroke="#ff8516"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							{:else}
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 20 20"
+									fill="none"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<circle cx="10" cy="10" r="9" stroke="#6d6764" stroke-width="1.5" />
+								</svg>
+							{/if}
+						</span>
 					</button>
-					<button class="nav-next" on:click={onNext} disabled={selectedAnswer === null}>
-						<span>Next</span>
-						<svg
-							width="20"
-							height="20"
-							viewBox="0 0 20 20"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M4.1665 10H15.8332M15.8332 10L10.8332 5M15.8332 10L10.8332 15"
-								stroke="#fafafa"
-								stroke-width="1.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							/>
-						</svg>
-					</button>
-				</div>
+				{/each}
 			</div>
 		{/key}
+	</div>
+
+	<!-- Navigation (static) -->
+	<div class="nav">
+		<button class="nav-back" on:click={onPrev} aria-label="Previous question">
+			<svg
+				width="20"
+				height="20"
+				viewBox="0 0 20 20"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M15.8332 10H4.1665M4.1665 10L9.1665 15M4.1665 10L9.1665 5"
+					stroke="#eceae9"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		</button>
+		<button class="nav-next" on:click={onNext} disabled={selectedAnswer === null}>
+			<span>Next</span>
+			<svg
+				width="20"
+				height="20"
+				viewBox="0 0 20 20"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M4.1665 10H15.8332M15.8332 10L10.8332 5M15.8332 10L10.8332 15"
+					stroke="#fafafa"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		</button>
 	</div>
 
 	<p class="disclaimer">The match is informational and not an investment recommendation</p>
@@ -214,49 +221,40 @@
 		}
 	}
 
-	/* ── Card container (clips the fly animation) ───── */
-	.card-container {
+	/* ── Question box (static frame, text slides inside) */
+	.question-box {
 		position: relative;
 		z-index: 2;
 		width: 333px;
 		max-width: calc(100vw - 48px);
-		/* fixed height = enough for 4 answers; clips transitioning cards */
-		height: 520px;
-		overflow: hidden;
-	}
-
-	/* ── Quiz card ───────────────────────────────────── */
-	.quiz-card {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-	}
-
-	/* ── Question box ────────────────────────────────── */
-	.question-box {
+		height: 155px;
 		border: 1px solid #ffa33a;
 		border-radius: 24px;
-		min-height: 155px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 24px;
+		overflow: hidden;
 
 		.question-text {
+			position: absolute;
+			inset: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 24px;
 			font-size: 20px;
 			font-weight: 500;
 			line-height: 28px;
 			color: #fff;
 			text-align: center;
+			margin: 0;
 		}
 	}
 
-	/* ── Progress ────────────────────────────────────── */
+	/* ── Progress (static) ───────────────────────────── */
 	.progress-section {
+		position: relative;
+		z-index: 2;
+		width: 333px;
+		max-width: calc(100vw - 48px);
+		margin: 20px 0;
 		display: flex;
 		flex-direction: column;
 		gap: 6px;
@@ -284,8 +282,23 @@
 		}
 	}
 
+	/* ── Answers container (clips the slide animation) ── */
+	.answers-container {
+		position: relative;
+		z-index: 2;
+		width: 333px;
+		max-width: calc(100vw - 48px);
+		/* 4 answers × 44px + 3 gaps × 8px */
+		height: 220px;
+		overflow: hidden;
+	}
+
 	/* ── Answer options ──────────────────────────────── */
 	.answers {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
@@ -331,6 +344,10 @@
 
 	/* ── Navigation ──────────────────────────────────── */
 	.nav {
+		position: relative;
+		z-index: 2;
+		width: 333px;
+		max-width: calc(100vw - 48px);
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -410,14 +427,20 @@
 
 	/* ── Mobile ──────────────────────────────────────── */
 	@media screen and (max-width: 767px) {
-		.card-container {
+		.question-box,
+		.progress-section,
+		.answers-container,
+		.nav {
 			width: 100%;
 			max-width: 480px;
+		}
+
+		.answers-container {
 			height: auto;
 			overflow: visible;
 		}
 
-		.quiz-card {
+		.answers {
 			position: static;
 		}
 	}

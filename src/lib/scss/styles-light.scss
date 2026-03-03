@@ -1,0 +1,40 @@
+:root {
+	--font-family-main: 'Suisse Intl';
+}
+
+body {
+	--Text-Primary: #373737;
+	background-color: #fff;
+	color: var(--Text-Primary);
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image: url(/images/bgr/bgr-light@2x.webp);
+		background-size: cover;
+		background-position: center center;
+		pointer-events: none;
+	}
+}
+
+h1 {
+	font-size: 72px;
+	font-style: normal;
+	font-weight: 450;
+	line-height: 82px;
+}
+
+.app {
+	background-image: url(/images/bgr/bgr-light@2x.webp);
+}
+
+.main {
+	&-light {
+		display: flex;
+		align-items: stretch;
+		justify-content: center;
+		padding: 56px;
+		max-width: 1412px;
+	}
+}

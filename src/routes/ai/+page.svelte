@@ -2,8 +2,16 @@
 	import Screen1 from '../../components/ai/Screen1.svelte';
 	import Screen2 from '../../components/ai/Screen2.svelte';
 	import Screen3 from '../../components/ai/Screen3.svelte';
-	import { fly, fade } from 'svelte/transition';
+	import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
+
+	function screenOut(node: Element, { duration = 250 }: { duration?: number } = {}) {
+		return {
+			duration,
+			css: (t: number) =>
+				`opacity: ${t}; position: absolute; top: 0; left: 0; right: 0; pointer-events: none;`
+		};
+	}
 	import questions from '$lib/questions';
 
 	type AppScreen = 'hero' | 'quiz' | 'result';
@@ -52,7 +60,7 @@
 		<div
 			class="screen-wrap"
 			in:fly={{ y: -20, duration: 400, opacity: 0, easing: cubicOut }}
-			out:fade={{ duration: 250 }}
+			out:screenOut={{ duration: 250 }}
 		>
 			<Screen1 onStart={goToQuiz} />
 		</div>
@@ -60,7 +68,7 @@
 		<div
 			class="screen-wrap"
 			in:fly={{ y: 20, duration: 400, opacity: 0, easing: cubicOut }}
-			out:fade={{ duration: 250 }}
+			out:screenOut={{ duration: 250 }}
 		>
 			<Screen2
 				{questionIndex}
@@ -75,7 +83,7 @@
 		<div
 			class="screen-wrap"
 			in:fly={{ y: 20, duration: 400, opacity: 0, easing: cubicOut }}
-			out:fade={{ duration: 250 }}
+			out:screenOut={{ duration: 250 }}
 		>
 			<Screen3 onRestart={handleRestart} />
 		</div>
@@ -87,13 +95,10 @@
 		position: relative;
 		width: 100%;
 		min-height: 100vh;
-		overflow: hidden;
+		overflow-x: clip;
 	}
 
 	.screen-wrap {
-		position: absolute;
-		top: 0;
-		left: 0;
 		width: 100%;
 	}
 </style>

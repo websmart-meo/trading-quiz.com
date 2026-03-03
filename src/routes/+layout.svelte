@@ -1,14 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
 	import { gtm, gtmIdIQOption } from '$lib/gtm';
 	const gtmScriptString = gtm(gtmIdIQOption);
-	import Main from '../components/Main/Main.svelte';
 
 	import '$lib/scss/styles.scss';
 
-	export let data;
-	const { subpage } = data;
 	const title = 'Investment Matchmaker';
 	const desc = '1 minute. 5 questions. No registration and deposit required.';
 
@@ -31,8 +27,3 @@
 </svelte:head>
 
 <slot />
-{#if $page.route.id !== '/ai'}
-	<div class="app app-{subpage}">
-		<Main {subpage} />
-	</div>
-{/if}

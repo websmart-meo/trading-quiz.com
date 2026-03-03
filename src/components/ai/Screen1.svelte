@@ -349,6 +349,7 @@
 			white-space: normal;
 			width: 100%;
 			font-size: 11px;
+			margin-top: 20px;
 		}
 	}
 </style>
