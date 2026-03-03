@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
 	import ImageFromLib from '../../common/ImageFromLib.svelte';
 	import checkmark from '../../../lib/assets/images/light/checkmark.svg';
+
+	export let onStart: () => void;
 
 	const items = ['1 minute', '5 questions', 'No registration required', 'No deposit required'];
 </script>
@@ -17,7 +19,7 @@
 			{/each}
 		</ul>
 
-		<button class="button button-primary"> Get matched </button>
+		<button class="button button-primary" on:click={onStart}>Get matched</button>
 	</div>
 	<div class="main-right">
 		<ImageFromLib imagesPath="light/photo" fallbackFormat="png" classes="quote-photo" />

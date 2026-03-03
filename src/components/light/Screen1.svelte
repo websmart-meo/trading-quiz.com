@@ -1,0 +1,49 @@
+<script lang="ts">
+	import Main from './Main/Main.svelte';
+
+	export let onStart: () => void;
+</script>
+
+<section class="screen1-light">
+	<Main {onStart} />
+	<p class="disclaimer">The match is informational and not an investment recommendation</p>
+</section>
+
+<style lang="scss">
+	.screen1-light {
+		position: relative;
+		width: 100%;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 52px;
+		box-sizing: border-box;
+
+		@media screen and (max-width: 767px) {
+			padding: 24px;
+			align-items: flex-start;
+		}
+	}
+
+	.disclaimer {
+		position: absolute;
+		bottom: 24px;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 12px;
+		font-weight: 400;
+		line-height: 16px;
+		color: #a0a0a0;
+		white-space: nowrap;
+		font-family: var(--font-family-main, 'Suisse Intl', sans-serif);
+
+		@media screen and (max-width: 767px) {
+			position: static;
+			transform: none;
+			white-space: normal;
+			text-align: center;
+			margin-top: 16px;
+		}
+	}
+</style>
