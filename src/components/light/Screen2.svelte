@@ -153,10 +153,11 @@
 		width: 333px;
 		max-width: calc(100vw - 48px);
 		height: 155px;
-		border: 1px solid #ffa33a;
+		border: 1px solid #d4d0cc;
 		border-radius: 24px;
 		overflow: hidden;
-		background-color: transparent;
+		background-color: #eceae8;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 
 		.question-text {
 			position: absolute;
@@ -233,23 +234,24 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 10px 10px 10px 16px;
-		background-color: #f0efee;
+		background-color: #eceae8;
 		border-radius: 14px;
-		border: 1px solid #d8d4d0;
+		border: 1px solid #d4d0cc;
 		cursor: pointer;
 		text-align: left;
 		gap: 12px;
 		font-family: inherit;
-		transition: background-color 0.15s ease, border-color 0.15s ease;
+		transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 		min-height: 44px;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 
 		&:hover {
-			background-color: #e8e6e4;
+			background-color: #e4e2e0;
 			border-color: #c8c4c0;
 		}
 
 		&.selected {
-			background-color: #e8e6e4;
+			background-color: #e4e2e0;
 			border-color: #c8c4c0;
 		}
 
@@ -285,13 +287,14 @@
 			justify-content: center;
 			width: 40px;
 			height: 40px;
-			background-color: #ebebea;
+			background-color: #eceae8;
 			border-radius: 12px;
-			border: none;
+			border: 1px solid #d4d0cc;
 			cursor: pointer;
 			font-family: inherit;
 			flex-shrink: 0;
-			transition: background-color 0.15s ease;
+			transition: background-color 0.15s ease, box-shadow 0.15s ease;
+			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 
 			&:hover {
 				background-color: #e0dedc;

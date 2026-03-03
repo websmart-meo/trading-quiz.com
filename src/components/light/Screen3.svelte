@@ -212,9 +212,10 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 12px 22px 12px 16px;
-		background-color: #f0efee;
-		border: 1px solid #d8d4d0;
+		background-color: #eceae8;
+		border: 1px solid #d4d0cc;
 		border-radius: 20px;
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 		gap: 15px;
 
 		.brand-left {
