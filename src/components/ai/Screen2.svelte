@@ -29,9 +29,7 @@
 			duration: mobile ? 180 : 240,
 			easing: quintIn,
 			css: (t: number, u: number) =>
-				mobile
-					? `opacity: ${t};`
-					: `transform: translateX(${u * -dir * 80}%); opacity: ${t};`
+				mobile ? `opacity: ${t};` : `transform: translateX(${u * -dir * 80}%); opacity: ${t};`
 		};
 	}
 
@@ -67,7 +65,9 @@
 				class="question-text"
 				in:questionIn={{ dir: direction }}
 				out:questionOut={{ dir: direction }}
-			>{question.q}</p>
+			>
+				{question.q}
+			</p>
 		{/key}
 	</div>
 
@@ -82,11 +82,7 @@
 	<!-- Answers (slide on question change) -->
 	<div class="answers-container">
 		{#key questionIndex}
-			<div
-				class="answers"
-				in:questionIn={{ dir: direction }}
-				out:questionOut={{ dir: direction }}
-			>
+			<div class="answers" in:questionIn={{ dir: direction }} out:questionOut={{ dir: direction }}>
 				{#each question.a as answer, i}
 					<button
 						class="answer-item"
@@ -347,6 +343,7 @@
 		position: relative;
 		z-index: 2;
 		width: 333px;
+		margin-top: 20px;
 		max-width: calc(100vw - 48px);
 		display: flex;
 		align-items: center;
@@ -433,6 +430,10 @@
 		.nav {
 			width: 100%;
 			max-width: 480px;
+		}
+
+		.question-text {
+			position: relative;
 		}
 
 		.answers-container {

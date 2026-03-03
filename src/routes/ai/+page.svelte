@@ -14,7 +14,7 @@
 	}
 	import questions from '$lib/questions';
 
-	type AppScreen = 'hero' | 'quiz' | 'result';
+	type AppScreen = 'hero' | 'quiz' | 'loading' | 'result';
 
 	let screen: AppScreen = 'hero';
 	let questionIndex = 0;
@@ -37,7 +37,10 @@
 			direction = 1;
 			questionIndex++;
 		} else {
-			screen = 'result';
+			screen = 'loading';
+			setTimeout(() => {
+				screen = 'result';
+			}, 2000);
 		}
 	}
 
@@ -79,6 +82,17 @@
 				onPrev={handlePrev}
 			/>
 		</div>
+	{:else if screen === 'loading'}
+		<div
+			class="screen-wrap loader-screen"
+			in:fly={{ y: 20, duration: 300, opacity: 0, easing: cubicOut }}
+			out:screenOut={{ duration: 300 }}
+		>
+			<div class="loader-content">
+				<div class="loader-ring"></div>
+				<p class="loader-text">Finding your match…</p>
+			</div>
+		</div>
 	{:else}
 		<div
 			class="screen-wrap"
@@ -95,10 +109,45 @@
 		position: relative;
 		width: 100%;
 		min-height: 100vh;
-		overflow-x: clip;
+		overflow: clip;
 	}
 
 	.screen-wrap {
 		width: 100%;
+	}
+
+	.loader-screen {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
+		background-color: #1b1817;
+	}
+
+	.loader-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 24px;
+	}
+
+	.loader-ring {
+		width: 56px;
+		height: 56px;
+		border-radius: 50%;
+		border: 3px solid #2e2724;
+		border-top-color: #ff8516;
+		animation: spin 0.9s linear infinite;
+	}
+
+	@keyframes spin {
+		to { transform: rotate(360deg); }
+	}
+
+	.loader-text {
+		font-family: Inter, sans-serif;
+		font-size: 16px;
+		font-weight: 500;
+		color: #afadac;
 	}
 </style>
