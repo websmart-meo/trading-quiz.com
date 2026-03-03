@@ -184,5 +184,10 @@
 	:global(.quote-photo img) {
 		display: block;
 		margin: 0 auto;
+
+		@media screen and (max-width: 767px) {
+			width: 200px;
+			height: 200px;
+		}
 	}
 </style>
