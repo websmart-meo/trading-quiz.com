@@ -21,6 +21,7 @@
 		box-sizing: border-box;
 
 		@media screen and (max-width: 767px) {
+			flex-direction: column;
 			padding: 24px;
 			align-items: flex-start;
 		}
@@ -43,7 +44,8 @@
 			transform: none;
 			white-space: normal;
 			text-align: center;
-			margin-top: 16px;
+			margin-top: auto;
+			width: 100%;
 		}
 	}
 </style>
