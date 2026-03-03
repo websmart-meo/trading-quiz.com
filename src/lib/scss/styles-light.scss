@@ -9,7 +9,7 @@ body {
 
 	&::after {
 		content: '';
-		position: absolute;
+		position: fixed;
 		inset: 0;
 		background-image: url(/images/bgr/bgr-light@2x.webp);
 		background-size: cover;
@@ -23,6 +23,11 @@ h1 {
 	font-style: normal;
 	font-weight: 450;
 	line-height: 82px;
+
+	@media screen and (max-width: 767px) {
+		font-size: clamp(36px, 10vw, 56px);
+		line-height: 1.15;
+	}
 }
 
 .app {
@@ -35,5 +40,11 @@ h1 {
 		align-items: stretch;
 		justify-content: center;
 		max-width: 1412px;
+		width: 100%;
+		box-sizing: border-box;
+
+		@media screen and (max-width: 767px) {
+			flex-direction: column;
+		}
 	}
 }

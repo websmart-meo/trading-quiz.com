@@ -96,6 +96,11 @@
 	.main-left,
 	.main-right {
 		width: 50%;
+		box-sizing: border-box;
+
+		@media screen and (max-width: 767px) {
+			width: 100%;
+		}
 	}
 
 	.main-left {
@@ -107,6 +112,12 @@
 		align-items: flex-start;
 		gap: 52px;
 		justify-content: center;
+
+		@media screen and (max-width: 767px) {
+			padding: 32px 24px;
+			gap: 32px;
+			border-radius: 24px;
+		}
 	}
 
 	.main-right {
@@ -116,11 +127,21 @@
 		flex-direction: column;
 		gap: 60px;
 
+		@media screen and (max-width: 767px) {
+			padding: 32px 24px;
+			gap: 32px;
+		}
+
 		p.quote {
 			color: var(--Text-Primary);
 			font-size: 36px;
 			font-weight: 450;
 			line-height: 44px;
+
+			@media screen and (max-width: 767px) {
+				font-size: 24px;
+				line-height: 32px;
+			}
 
             svg {
                 display: block;
@@ -133,6 +154,11 @@
 			font-weight: 500;
 			line-height: 28px;
 
+			@media screen and (max-width: 767px) {
+				font-size: 16px;
+				line-height: 24px;
+			}
+
 			span {
 				display: block;
 				color: #707070;
@@ -140,6 +166,10 @@
 				font-weight: 400;
 				line-height: 24px;
 				margin-top: 4px;
+
+				@media screen and (max-width: 767px) {
+					font-size: 14px;
+				}
 			}
 		}
 	}
@@ -147,9 +177,8 @@
 	.main-left {
 		background-image: url('/images/bgr/flare-top.svg'), url('/images/bgr/flare-bottom.svg');
 		background-repeat: no-repeat;
-		background-position:
-			top right,
-			bottom left;
+		background-position: top center, bottom center;
+		background-size: 100% auto, 100% auto;
 	}
 
 	:global(.quote-photo img) {
