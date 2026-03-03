@@ -1,8 +1,7 @@
 <script lang="ts">
 	import questions from '$lib/questions';
 	import { quintOut, quintIn } from 'svelte/easing';
-
-	export let questionIndex: number;
+export let questionIndex: number;
 	export let answers: (number | null)[];
 	export let direction: number;
 	export let onSelect: (i: number) => void;
@@ -153,11 +152,10 @@
 		width: 333px;
 		max-width: calc(100vw - 48px);
 		height: 155px;
-		border: 1px solid #d4d0cc;
+		border: 1px solid #ff8e37;
 		border-radius: 24px;
 		overflow: hidden;
-		background-color: #eceae8;
-		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+		background-color: transparent;
 
 		.question-text {
 			position: absolute;
@@ -234,25 +232,21 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 10px 10px 10px 16px;
-		background-color: #eceae8;
+		background-color: #E6E5E2;
 		border-radius: 14px;
-		border: 1px solid #d4d0cc;
 		cursor: pointer;
 		text-align: left;
 		gap: 12px;
 		font-family: inherit;
-		transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+		transition: background-color 0.15s ease;
 		min-height: 44px;
-		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 
 		&:hover {
 			background-color: #e4e2e0;
-			border-color: #c8c4c0;
 		}
 
 		&.selected {
 			background-color: #e4e2e0;
-			border-color: #c8c4c0;
 		}
 
 		.answer-text {
@@ -287,14 +281,13 @@
 			justify-content: center;
 			width: 40px;
 			height: 40px;
-			background-color: #eceae8;
+			background-color: #e8e8e6;
 			border-radius: 12px;
-			border: 1px solid #d4d0cc;
+			border: none;
 			cursor: pointer;
 			font-family: inherit;
 			flex-shrink: 0;
-			transition: background-color 0.15s ease, box-shadow 0.15s ease;
-			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+			transition: background-color 0.15s ease;
 
 			&:hover {
 				background-color: #e0dedc;
@@ -338,7 +331,7 @@
 		font-size: 14px;
 		font-weight: 400;
 		line-height: 20px;
-		color: #a0a0a0;
+		color: #8a8a8a;
 		text-align: center;
 		white-space: nowrap;
 		z-index: 2;

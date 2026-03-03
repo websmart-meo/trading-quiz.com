@@ -78,7 +78,9 @@
 						<svg class="ring" width="56" height="56" viewBox="0 0 56 56">
 							<circle cx="28" cy="28" r="22" stroke="#e0dedd" stroke-width="3" fill="none" />
 							<circle
-								cx="28" cy="28" r="22"
+								cx="28"
+								cy="28"
+								r="22"
 								stroke={ringColor(brand.percentNum)}
 								stroke-width="3"
 								fill="none"
@@ -88,22 +90,40 @@
 								transform="rotate(-90 28 28)"
 							/>
 							<text
-								x="28" y="28"
+								x="28"
+								y="28"
 								text-anchor="middle"
 								dominant-baseline="middle"
 								font-size="11"
 								font-weight="500"
 								fill="#373737"
-								font-family="inherit"
-							>{brand.percent}%</text>
+								font-family="inherit">{brand.percent}%</text
+							>
 						</svg>
 						<img class="brand-logo" src={brand.icon} alt={brand.brand} />
 					</div>
 
-					<a class="brand-link" href={buildLink(brand, $aff)} target="_blank" rel="noopener noreferrer">
+					<a
+						class="brand-link"
+						href={buildLink(brand, $aff)}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
 						<span>Go to the site</span>
-						<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M4.1665 10H15.8332M15.8332 10L10.8332 5M15.8332 10L10.8332 15" stroke="#ff8516" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						<svg
+							width="20"
+							height="20"
+							viewBox="0 0 20 20"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M4.1665 10H15.8332M15.8332 10L10.8332 5M15.8332 10L10.8332 15"
+								stroke="#ff8516"
+								stroke-width="1.5"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							/>
 						</svg>
 					</a>
 				</li>
@@ -148,20 +168,32 @@
 		.coins-left {
 			left: 0;
 			top: 7.5vh;
-			animation: coins-in-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both, float 5s 0.8s ease-in-out infinite;
+			animation:
+				coins-in-left 0.8s cubic-bezier(0.22, 1, 0.36, 1) both,
+				float 5s 0.8s ease-in-out infinite;
 
-			@media screen and (max-width: 900px) { height: 28vh; }
-			@media screen and (max-width: 767px) { display: none; }
+			@media screen and (max-width: 900px) {
+				height: 28vh;
+			}
+			@media screen and (max-width: 767px) {
+				display: none;
+			}
 		}
 
 		.coins-right {
 			right: 0;
 			top: 56.5vh;
-			animation: coins-in-right 0.8s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both, float 5s 0.95s ease-in-out infinite;
+			animation:
+				coins-in-right 0.8s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both,
+				float 5s 0.95s ease-in-out infinite;
 			animation-direction: normal, reverse;
 
-			@media screen and (max-width: 900px) { height: 28vh; }
-			@media screen and (max-width: 767px) { display: none; }
+			@media screen and (max-width: 900px) {
+				height: 28vh;
+			}
+			@media screen and (max-width: 767px) {
+				display: none;
+			}
 		}
 	}
 
@@ -212,10 +244,8 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 12px 22px 12px 16px;
-		background-color: #eceae8;
-		border: 1px solid #d4d0cc;
+		background-color: #e6e5e2;
 		border-radius: 20px;
-		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 		gap: 15px;
 
 		.brand-left {
@@ -225,7 +255,9 @@
 			flex-shrink: 0;
 		}
 
-		.ring { flex-shrink: 0; }
+		.ring {
+			flex-shrink: 0;
+		}
 
 		.brand-logo {
 			height: 32px;
@@ -248,11 +280,15 @@
 			flex-shrink: 0;
 			transition: opacity 0.15s ease;
 
-			svg { transition: transform 0.2s ease; }
+			svg {
+				transition: transform 0.2s ease;
+			}
 
 			&:hover {
 				opacity: 0.8;
-				svg { transform: translateX(4px); }
+				svg {
+					transform: translateX(4px);
+				}
 			}
 		}
 	}
@@ -269,7 +305,9 @@
 		font-family: inherit;
 		transition: color 0.15s ease;
 
-		&:hover { color: #707070; }
+		&:hover {
+			color: #707070;
+		}
 	}
 
 	/* ── Disclaimer ──────────────────────────────────── */
@@ -295,31 +333,57 @@
 
 	/* ── Animations ──────────────────────────────────── */
 	@keyframes coins-in-left {
-		from { opacity: 0; transform: translateX(-60px) scale(0.92); }
-		to { opacity: 0.45; transform: translateX(0) scale(1); }
+		from {
+			opacity: 0;
+			transform: translateX(-60px) scale(0.92);
+		}
+		to {
+			opacity: 0.45;
+			transform: translateX(0) scale(1);
+		}
 	}
 
 	@keyframes coins-in-right {
-		from { opacity: 0; transform: translateX(60px) scale(0.92); }
-		to { opacity: 0.45; transform: translateX(0) scale(1); }
+		from {
+			opacity: 0;
+			transform: translateX(60px) scale(0.92);
+		}
+		to {
+			opacity: 0.45;
+			transform: translateX(0) scale(1);
+		}
 	}
 
 	@keyframes float {
-		0%, 100% { transform: translateY(0); }
-		50% { transform: translateY(-12px); }
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-12px);
+		}
 	}
 
 	/* ── Mobile ──────────────────────────────────────── */
 	@media screen and (max-width: 600px) {
-		.title-box { padding: 12px 24px; }
+		.title-box {
+			padding: 12px 24px;
+		}
 
 		.brand-row {
 			padding: 10px 16px 10px 12px;
 			gap: 10px;
 
-			.brand-left { gap: 10px; }
-			.brand-logo { height: 24px; max-width: 120px; }
-			.brand-link span { display: none; }
+			.brand-left {
+				gap: 10px;
+			}
+			.brand-logo {
+				height: 24px;
+				max-width: 120px;
+			}
+			.brand-link span {
+				display: none;
+			}
 		}
 	}
 </style>
