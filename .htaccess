@@ -1,0 +1,33 @@
+Options -Indexes
+
+RewriteEngine On
+
+# Redirect root → /ai
+RewriteRule ^$ /ai [R=301,L]
+
+# Serve existing files directly (not directories)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Strip trailing slash (redirect /ai/ → /ai)
+RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+# Route /path → /path.html (for pre-rendered SvelteKit routes)
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# Fallback to index.html for anything else
+RewriteRule ^ /index.html [L]
+
+# Cache static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/html "access plus 0 seconds"
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
