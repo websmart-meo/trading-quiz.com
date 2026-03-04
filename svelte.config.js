@@ -5,7 +5,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/trading-quiz.com' : ''
+			// base: process.env.NODE_ENV === 'production' ? '/trading-quiz.com' : ''
 		},
 		prerender: {
 			entries: ['/v1', '/v2', '/v3', '/', '/ai', '/light']
