@@ -134,6 +134,9 @@ export let questionIndex: number;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		background-image: url('/images/bgr/pic-blured.webp');
+		background-size: cover;
+		background-position: center;
 
 		@media screen and (max-width: 767px) {
 			height: auto;

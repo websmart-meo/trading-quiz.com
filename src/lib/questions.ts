@@ -11,7 +11,7 @@ export default [
 			'I know how to trade, but need practice on demo account'
 		]
 	},
-	{ q: 'What is your trading budget?', a: ['10$', '100$', '500$', '1000$+'] },
+	{ q: 'What is your trading budget?', a: ['$10', '$100', '$500', '$1000+'] },
 	{
 		q: 'What matters most to you?',
 		a: ['Stability', 'Risk/return balance', 'Maximum profit', 'Capital growth']
