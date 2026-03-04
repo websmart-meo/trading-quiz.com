@@ -9,7 +9,9 @@
       "Bash(npx svelte-check --workspace src/components/ai/Screen3.svelte)",
       "Bash(security find-generic-password -w -s \"Figma Keys\" -a \"Figma\")",
       "Bash(security find-generic-password -w -s \"figma\")",
-      "Bash(security dump-keychain)"
+      "Bash(security dump-keychain)",
+      "mcp__claude_ai_Figma__whoami",
+      "Bash(claude auth status)"
     ]
   }
 }
