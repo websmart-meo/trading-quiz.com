@@ -134,6 +134,7 @@ export let questionIndex: number;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		background-color: #f0ece8;
 		background-image: url('/images/bgr/pic-blured.webp');
 		background-size: cover;
 		background-position: center;

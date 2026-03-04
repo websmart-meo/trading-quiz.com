@@ -19,9 +19,16 @@
 		justify-content: center;
 		padding: 52px;
 		box-sizing: border-box;
-		background-image: url('/images/bgr/bgr-light@2x.webp');
-		background-size: cover;
-		background-position: center;
+
+		&::after {
+			content: '';
+			position: fixed;
+			inset: 0;
+			background-image: url('/images/bgr/bgr-light@2x.webp');
+			background-size: cover;
+			background-position: center center;
+			pointer-events: none;
+		}
 
 		@media screen and (max-width: 767px) {
 			flex-direction: column;
