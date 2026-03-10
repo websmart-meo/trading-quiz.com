@@ -1,12 +1,14 @@
 <script lang="ts">
 	import Main from './Main/Main.svelte';
+	import type { Translations } from '$lib/i18n';
 
 	export let onStart: () => void;
+	export let t: Translations['ui'] | null = null;
 </script>
 
 <section class="screen1-light">
-	<Main {onStart} />
-	<p class="disclaimer">The match is informational and not an investment recommendation</p>
+	<Main {onStart} {t} />
+	<p class="disclaimer">{t ? t.disclaimer : 'The match is informational and not an investment recommendation'}</p>
 </section>
 
 <style lang="scss">

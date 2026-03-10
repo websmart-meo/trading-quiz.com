@@ -4,6 +4,9 @@
 	import { cubicOut } from 'svelte/easing';
 	import { writable } from 'svelte/store';
 	import { brandsData } from '$lib/questions';
+	import type { Translations } from '$lib/i18n';
+
+	export let t: Translations['ui'] | null = null;
 	import imgCoinsLeft from '$lib/assets/images/ai/coins-left.png';
 	import imgCoinsRight from '$lib/assets/images/ai/coins-right.png';
 	import imgIqOption from '$lib/assets/images/brands-logo/iqoption.svg';
@@ -63,7 +66,7 @@
 		<!-- Title -->
 		<div class="title-wrap">
 			<div class="title-box">
-				<p class="title-text">Match Score</p>
+				<p class="title-text">{t ? t.matchScore : 'Match Score'}</p>
 			</div>
 		</div>
 
@@ -109,7 +112,7 @@
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<span>Go to the site</span>
+						<span>{t ? t.goToSite : 'Go to the site'}</span>
 						<svg
 							width="20"
 							height="20"
@@ -130,10 +133,10 @@
 			{/each}
 		</ul>
 
-		<button class="restart-btn" on:click={onRestart}>Try again</button>
+		<button class="restart-btn" on:click={onRestart}>{t ? t.tryAgain : 'Try again'}</button>
 	</div>
 
-	<p class="disclaimer">The match is informational and not an investment recommendation</p>
+	<p class="disclaimer">{t ? t.disclaimer : 'The match is informational and not an investment recommendation'}</p>
 </section>
 
 <style lang="scss">

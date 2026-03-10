@@ -1,8 +1,10 @@
 <script lang="ts">
-	import questions from '$lib/questions';
 	import { quintOut, quintIn } from 'svelte/easing';
 	import imgBlur from '$lib/assets/images/ai/pic-blur.svg';
+	import type { Translations } from '$lib/i18n';
 
+	export let t: Translations['ui'];
+	export let questions: { q: string; a: string[] }[];
 	export let questionIndex: number;
 	export let answers: (number | null)[];
 	export let direction: number;
@@ -75,7 +77,7 @@
 
 	<!-- Progress (static) -->
 	<div class="progress-section">
-		<p class="progress-label">Question {questionIndex + 1} of {questions.length}</p>
+		<p class="progress-label">{t.questionLabel} {questionIndex + 1} {t.questionOf} {questions.length}</p>
 		<div class="progress-bar">
 			<div class="progress-fill" style="width: {progress * 100}%"></div>
 		</div>
@@ -147,7 +149,7 @@
 			</svg>
 		</button>
 		<button class="nav-next" on:click={onNext} disabled={selectedAnswer === null}>
-			<span>Next</span>
+			<span>{t.nextBtn}</span>
 			<svg
 				width="20"
 				height="20"
@@ -166,7 +168,7 @@
 		</button>
 	</div>
 
-	<p class="disclaimer">The match is informational and not an investment recommendation</p>
+	<p class="disclaimer">{t.disclaimer}</p>
 </section>
 
 <style lang="scss">

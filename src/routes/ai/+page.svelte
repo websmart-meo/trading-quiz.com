@@ -4,6 +4,7 @@
 	import Screen3 from '../../components/ai/Screen3.svelte';
 	import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
+	import { translations } from '$lib/i18n';
 
 	function screenOut(node: Element, { duration = 250 }: { duration?: number } = {}) {
 		return {
@@ -12,7 +13,9 @@
 				`opacity: ${t}; position: absolute; top: 0; left: 0; right: 0; pointer-events: none;`
 		};
 	}
-	import questions from '$lib/questions';
+
+	const t = translations['en'];
+	const questions = t.questions;
 
 	type AppScreen = 'hero' | 'quiz' | 'loading' | 'result';
 
@@ -65,7 +68,7 @@
 			in:fly={{ y: -20, duration: 400, opacity: 0, easing: cubicOut }}
 			out:screenOut={{ duration: 250 }}
 		>
-			<Screen1 onStart={goToQuiz} />
+			<Screen1 onStart={goToQuiz} t={t.ui} />
 		</div>
 	{:else if screen === 'quiz'}
 		<div
@@ -74,6 +77,8 @@
 			out:screenOut={{ duration: 250 }}
 		>
 			<Screen2
+				t={t.ui}
+				{questions}
 				{questionIndex}
 				{answers}
 				{direction}
@@ -90,7 +95,7 @@
 		>
 			<div class="loader-content">
 				<div class="loader-ring"></div>
-				<p class="loader-text">Finding your match…</p>
+				<p class="loader-text">{t.ui.loaderText}</p>
 			</div>
 		</div>
 	{:else}
@@ -99,7 +104,7 @@
 			in:fly={{ y: 20, duration: 400, opacity: 0, easing: cubicOut }}
 			out:screenOut={{ duration: 250 }}
 		>
-			<Screen3 onRestart={handleRestart} />
+			<Screen3 onRestart={handleRestart} t={t.ui} />
 		</div>
 	{/if}
 </div>

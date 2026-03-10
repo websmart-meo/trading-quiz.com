@@ -1,17 +1,19 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { icons } from '$lib/assets/images/brands-logo';
 	import { brandsData } from '$lib/questions';
+	import type { Translations } from '$lib/i18n';
+
+	export let tui: Translations['ui'] | null = null;
 
 	let aff = '';
 	onMount(() => {
 		const params = new URLSearchParams(window.location.search);
 		aff = params.get('aff') || '';
-		console.log('aff', aff);
 	});
 </script>
 
-<h3 class="h1">Investment Matchmaker match Score</h3>
+<h3 class="h1">{tui ? tui.matchScore : 'Investment Matchmaker match Score'}</h3>
 <ul class="brands-list">
 	{#each brandsData as i, idx}
 		<li>
@@ -23,7 +25,7 @@
 				href={`${i.link}?aff=${aff}&afftrack=${aff}_${i.afftrack}`}
 				class="brand-link button button-primary"
 			>
-				Go to the site
+				{tui ? tui.goToSite : 'Go to the site'}
 			</a>
 		</li>
 	{/each}

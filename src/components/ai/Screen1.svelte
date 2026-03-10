@@ -7,10 +7,10 @@
 	import imgChartPng1475 from '$lib/assets/images/ai/chart-bg-1475.png';
 	import imgBlur from '$lib/assets/images/ai/pic-blur.svg';
 	import imgQuoteIcon from '$lib/assets/images/ai/quote-icon.svg';
-
-	const utpItems = ['1 minute', '5 questions', 'No registration required', 'No deposit required'];
+	import type { Translations } from '$lib/i18n';
 
 	export let onStart: () => void;
+	export let t: Translations['ui'];
 </script>
 
 <section class="screen1">
@@ -28,26 +28,23 @@
 	<!-- Quote bar (top, desktop only) -->
 	<div class="quote-bar">
 		<img class="quote-icon" src={imgQuoteIcon} alt="" />
-		<p class="quote-text">
-			The best time to invest was yesterday. The second best time is now. The sooner you start
-			investing, the better.
-		</p>
+		<p class="quote-text">{t.quoteText}</p>
 		<div class="quote-divider"></div>
 		<div class="quote-attribution">
-			<p class="quote-author">Warren Buffett</p>
-			<p class="quote-role">Entrepreneur and investor</p>
+			<p class="quote-author">{t.quoteAuthor}</p>
+			<p class="quote-role">{t.quoteRole}</p>
 		</div>
 	</div>
 
 	<!-- Hero content -->
 	<div class="hero">
-		<h1 class="hero-title">Investment<br />Matchmaker</h1>
-		<button class="cta-btn" on:click={onStart}>Try yourself</button>
+		<h1 class="hero-title">{t.title[0]}<br />{t.title[1]}</h1>
+		<button class="cta-btn" on:click={onStart}>{t.ctaBtn}</button>
 	</div>
 
 	<!-- UTP checkmarks -->
 	<div class="utp-bar">
-		{#each utpItems as item}
+		{#each t.utpItems as item}
 			<div class="utp-item">
 				<svg
 					class="check-icon"
@@ -71,7 +68,7 @@
 	</div>
 
 	<!-- Disclaimer -->
-	<p class="disclaimer">The match is informational and not an investment recommendation</p>
+	<p class="disclaimer">{t.disclaimer}</p>
 </section>
 
 <style lang="scss">

@@ -1,15 +1,18 @@
 <script lang="ts">
 	import ImageFromLib from '../../common/ImageFromLib.svelte';
 	import checkmark from '../../../lib/assets/images/light/checkmark.svg';
+	import type { Translations } from '$lib/i18n';
 
 	export let onStart: () => void;
+	export let t: Translations['ui'] | null = null;
 
-	const items = ['1 minute', '5 questions', 'No registration required', 'No deposit required'];
+	const defaultItems = ['1 minute', '5 questions', 'No registration required', 'No deposit required'];
+	$: items = t ? t.utpItems : defaultItems;
 </script>
 
 <div class="main-light">
 	<div class="main-left">
-		<h1>Personalized investment matchmaker</h1>
+		<h1>{t ? t.title.join(' ') : 'Personalized investment matchmaker'}</h1>
 		<ul class="main-list">
 			{#each items as item}
 				<li>
@@ -19,7 +22,7 @@
 			{/each}
 		</ul>
 
-		<button class="button button-primary" on:click={onStart}>Get matched</button>
+		<button class="button button-primary" on:click={onStart}>{t ? t.ctaBtn : 'Get matched'}</button>
 	</div>
 	<div class="main-right">
 		<ImageFromLib imagesPath="light/photo" fallbackFormat="png" classes="quote-photo" />
@@ -51,12 +54,11 @@
 					</linearGradient>
 				</defs>
 			</svg>
-			The best time to invest was yesterday. The second best time is now. The sooner you start investing,
-			the better
+			{t ? t.quoteText : 'The best time to invest was yesterday. The second best time is now. The sooner you start investing, the better'}
 		</p>
 		<p class="author">
-			Warren Buffett
-			<span>Entrepreneur and investor</span>
+			{t ? t.quoteAuthor : 'Warren Buffett'}
+			<span>{t ? t.quoteRole : 'Entrepreneur and investor'}</span>
 		</p>
 	</div>
 </div>

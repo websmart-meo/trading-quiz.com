@@ -5,6 +5,7 @@
 	import { writable } from 'svelte/store';
 	import { brandsData } from '$lib/questions';
 	import imgBlur from '$lib/assets/images/ai/pic-blur.svg';
+	import type { Translations } from '$lib/i18n';
 	import imgCoinsLeft from '$lib/assets/images/ai/coins-left.png';
 	import imgCoinsRight from '$lib/assets/images/ai/coins-right.png';
 	import imgIqOption from '$lib/assets/images/ai/brands/iqoption.svg';
@@ -22,6 +23,7 @@
 	};
 
 	export let onRestart: () => void;
+	export let t: Translations['ui'];
 
 	const aff = writable('');
 	onMount(() => {
@@ -67,7 +69,7 @@
 		<!-- Title -->
 		<div class="title-wrap">
 			<div class="title-box">
-				<p class="title-text">Match Score</p>
+				<p class="title-text">{t.matchScore}</p>
 			</div>
 		</div>
 
@@ -124,7 +126,7 @@
 
 					<!-- CTA link -->
 					<a class="brand-link" href={buildLink(brand, $aff)} target="_blank" rel="noopener noreferrer">
-						<span>Go to the site</span>
+						<span>{t.goToSite}</span>
 						<svg
 							width="20"
 							height="20"
@@ -146,10 +148,10 @@
 		</ul>
 
 		<!-- Restart -->
-		<button class="restart-btn" on:click={onRestart}>Try again</button>
+		<button class="restart-btn" on:click={onRestart}>{t.tryAgain}</button>
 	</div>
 
-	<p class="disclaimer">The match is informational and not an investment recommendation</p>
+	<p class="disclaimer">{t.disclaimer}</p>
 </section>
 
 <style lang="scss">

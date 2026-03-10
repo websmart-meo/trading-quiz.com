@@ -73,7 +73,7 @@
 			in:fly={{ y: -20, duration: 400, opacity: 0, easing: cubicOut }}
 			out:screenOut={{ duration: 250 }}
 		>
-			<Screen1 onStart={goToQuiz} />
+			<Screen1 onStart={goToQuiz} t={t.ui} />
 		</div>
 	{:else if screen === 'quiz'}
 		<div
@@ -82,6 +82,8 @@
 			out:screenOut={{ duration: 250 }}
 		>
 			<Screen2
+				t={t.ui}
+				{questions}
 				{questionIndex}
 				{answers}
 				{direction}
@@ -107,7 +109,7 @@
 			in:fly={{ y: 20, duration: 400, opacity: 0, easing: cubicOut }}
 			out:screenOut={{ duration: 250 }}
 		>
-			<Screen3 onRestart={handleRestart} />
+			<Screen3 onRestart={handleRestart} t={t.ui} />
 		</div>
 	{/if}
 </div>

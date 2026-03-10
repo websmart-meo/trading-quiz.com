@@ -1,12 +1,21 @@
 <script lang="ts">
-	import questions from '$lib/questions';
+	import defaultQuestions from '$lib/questions';
 	import { quintOut, quintIn } from 'svelte/easing';
-export let questionIndex: number;
+	import type { Translations } from '$lib/i18n';
+
+	export let questionIndex: number;
 	export let answers: (number | null)[];
 	export let direction: number;
 	export let onSelect: (i: number) => void;
 	export let onNext: () => void;
 	export let onPrev: () => void;
+	export let questions: Translations['questions'] | null = null;
+	export let t: Translations['ui'] | null = null;
+
+	$: activeQuestions = questions ?? defaultQuestions;
+	$: question = activeQuestions[questionIndex];
+	$: progress = (questionIndex + 1) / activeQuestions.length;
+	$: selectedAnswer = answers[questionIndex];
 
 	function questionIn(node: Element, { dir = 1 }: { dir: number }) {
 		const mobile = window.matchMedia('(max-width: 767px)').matches;
@@ -32,10 +41,6 @@ export let questionIndex: number;
 					: `transform: translateX(${u * -dir * 80}%); opacity: ${t};`
 		};
 	}
-
-	$: question = questions[questionIndex];
-	$: progress = (questionIndex + 1) / questions.length;
-	$: selectedAnswer = answers[questionIndex];
 
 	const checkPath =
 		'M5.58333 9.33333L8.08333 11.8333L13.0833 6.83333M17.6667 9.33333C17.6667 13.9357 13.9357 17.6667 9.33333 17.6667C4.73096 17.6667 1 13.9357 1 9.33333C1 4.73096 4.73096 1 9.33333 1C13.9357 1 17.6667 4.73096 17.6667 9.33333Z';
@@ -66,7 +71,9 @@ export let questionIndex: number;
 
 	<!-- Progress (static) -->
 	<div class="progress-section">
-		<p class="progress-label">Question {questionIndex + 1} of {questions.length}</p>
+		<p class="progress-label">
+			{t ? t.questionLabel : 'Question'} {questionIndex + 1} {t ? t.questionOf : 'of'} {activeQuestions.length}
+		</p>
 		<div class="progress-bar">
 			<div class="progress-fill" style="width: {progress * 100}%"></div>
 		</div>
@@ -112,14 +119,14 @@ export let questionIndex: number;
 			</svg>
 		</button>
 		<button class="nav-next" on:click={onNext} disabled={selectedAnswer === null}>
-			<span>Next</span>
+			<span>{t ? t.nextBtn : 'Next'}</span>
 			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M4.1665 10H15.8332M15.8332 10L10.8332 5M15.8332 10L10.8332 15" stroke="#fafafa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 			</svg>
 		</button>
 	</div>
 
-	<p class="disclaimer">The match is informational and not an investment recommendation</p>
+	<p class="disclaimer">{t ? t.disclaimer : 'The match is informational and not an investment recommendation'}</p>
 </section>
 
 <style lang="scss">

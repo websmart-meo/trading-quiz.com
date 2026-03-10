@@ -2,11 +2,14 @@ Options -Indexes
 
 RewriteEngine On
 
-# Redirect root → /pt/ai (PT is the default language)
-RewriteRule ^$ /pt/ai [R=301,L]
+# Redirect root → /en/ai (EN is the default language)
+RewriteRule ^$ /en/ai [R=301,L]
 
-# Legacy non-prefixed routes → default language (PT)
-RewriteRule ^(ai|light|v1|v2|v3)$ /pt/$1 [R=301,L]
+# Legacy non-prefixed routes → default language (EN)
+RewriteRule ^(ai|light|v1|v2|v3)$ /en/$1 [R=301,L]
+
+# Bare lang codes → their default page
+RewriteRule ^(en|pt|es|th|ph)$ /$1/ai [R=301,L]
 
 # Serve existing files directly (not directories)
 RewriteCond %{REQUEST_FILENAME} -f

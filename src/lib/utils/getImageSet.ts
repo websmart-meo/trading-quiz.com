@@ -7,8 +7,6 @@ const images = import.meta.glob('/src/lib/assets/images/**/*.{png,jpg,webp,avif}
 
 export function getImageSet(path: string, fallbackFormat: FormatType = 'png') {
 	const base = `/src/lib/assets/images/${path}`;
-    console.log('base', base);
-    
 
 	return {
 		[fallbackFormat]: {

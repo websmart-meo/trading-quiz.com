@@ -18,7 +18,21 @@ const en: Translations = {
 		}
 	],
 	ui: {
-		loaderText: 'Finding your match…'
+		loaderText: 'Finding your match…',
+		ctaBtn: 'Try yourself',
+		utpItems: ['1 minute', '5 questions', 'No registration required', 'No deposit required'],
+		disclaimer: 'The match is informational and not an investment recommendation',
+		quoteText: 'The best time to invest was yesterday. The second best time is now. The sooner you start investing, the better.',
+		quoteAuthor: 'Warren Buffett',
+		quoteRole: 'Entrepreneur and investor',
+		questionLabel: 'Question',
+		questionOf: 'of',
+		nextBtn: 'Next',
+		matchScore: 'Match Score',
+		goToSite: 'Go to the site',
+		tryAgain: 'Try again',
+		backToStart: 'Back to start',
+		title: ['Investment', 'Matchmaker']
 	}
 };
 

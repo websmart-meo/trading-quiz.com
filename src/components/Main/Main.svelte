@@ -8,7 +8,10 @@
 	import Loader from '../common/Loader.svelte';
 	import { Questions } from '../Questions';
 	import { Result } from '../Result';
+	import en from '$lib/i18n/en';
+	import type { Translations } from '$lib/i18n';
 	export let subpage: SubpageType;
+	export let t: Translations = en;
 
 	let timer: ReturnType<typeof setTimeout> | null = null;
 
@@ -32,12 +35,11 @@
 
 {#if $step === 'main'}
 	<div class="main content bgr">
-		<h1 class="h1">Investment<br />Matchmaker</h1>
-		<h2>1 minute. 5 questions. No registration and deposit required.</h2>
+		<h1 class="h1">{t.ui.title[0]}<br />{t.ui.title[1]}</h1>
+		<h2>{t.ui.utpItems.join(' · ')}</h2>
 		<p class="quote">
-			The best time to invest was yesterday.<br />The second best time is now.<br />The sooner you
-			start investing, the better. <br />
-			<span>Warren Buffett,<br />entrepreneur and investor</span>
+			{t.ui.quoteText}<br />
+			<span>{t.ui.quoteAuthor},<br />{t.ui.quoteRole}</span>
 		</p>
 		<div>
 			<button
@@ -47,14 +49,14 @@
 					step.set('questions');
 				}}
 			>
-				Start
+				{t.ui.ctaBtn}
 			</button>
 		</div>
-		<p class="rw">The match is informational and not an investment recommendation</p>
+		<p class="rw">{t.ui.disclaimer}</p>
 	</div>
 {:else if $step === 'questions'}
 	<div class="questions bgr" in:fade>
-		<Questions />
+		<Questions questions={t.questions} tui={t.ui} />
 	</div>
 {:else if $step === 'loading'}
 	<div class="main">
@@ -62,6 +64,6 @@
 	</div>
 {:else}
 	<div class="main bgr" in:fade>
-		<Result />
+		<Result tui={t.ui} />
 	</div>
 {/if}

@@ -2,23 +2,41 @@ import type { Translations } from './types';
 
 const th: Translations = {
 	questions: [
-		{ q: 'Your Age', a: ['18-25', '26-35', '36-45', '45+'] },
+		{ q: 'อายุของคุณ', a: ['18-25', '26-35', '36-45', '45+'] },
 		{
-			q: 'Your Trading experience',
-			a: ['I am beginner', 'I am pro trader', 'I know how to trade, but need practice on demo account']
+			q: 'ประสบการณ์การเทรดของคุณ',
+			a: [
+				'ฉันเป็นมือใหม่',
+				'ฉันเป็นเทรดเดอร์มืออาชีพ',
+				'ฉันรู้วิธีเทรด แต่ต้องการฝึกฝนในบัญชีทดลอง'
+			]
 		},
-		{ q: 'What is your trading budget?', a: ['$10', '$100', '$500', '$1000+'] },
+		{ q: 'งบประมาณสำหรับการเทรดของคุณคือเท่าไร?', a: ['$10', '$100', '$500', '$1000+'] },
 		{
-			q: 'What matters most to you?',
-			a: ['Stability', 'Risk/return balance', 'Maximum profit', 'Capital growth']
+			q: 'สิ่งใดสำคัญที่สุดสำหรับคุณ?',
+			a: ['ความเสถียร', 'สมดุลระหว่างความเสี่ยงและผลตอบแทน', 'กำไรสูงสุด', 'การเติบโตของเงินทุน']
 		},
 		{
-			q: 'Which assets do you trade more often?',
-			a: ['Forex', 'Stocks', 'Cryptocurrencies', 'Commodities (gold, oil, etc.)']
+			q: 'คุณเทรดสินทรัพย์ใดบ่อยที่สุด?',
+			a: ['ฟอเร็กซ์', 'หุ้น', 'คริปโตเคอร์เรนซี', 'สินค้าโภคภัณฑ์ (ทองคำ น้ำมัน ฯลฯ)']
 		}
 	],
 	ui: {
-		loaderText: 'Finding your match…'
+		loaderText: 'กำลังค้นหาตัวเลือกที่เหมาะกับคุณ…',
+		ctaBtn: 'ลองทดสอบ',
+		utpItems: ['1 นาที', '5 คำถาม', 'ไม่ต้องลงทะเบียน', 'ไม่ต้องฝากเงิน'],
+		disclaimer: 'ผลลัพธ์เป็นข้อมูลเท่านั้น ไม่ใช่คำแนะนำการลงทุน',
+		quoteText: 'เวลาที่ดีที่สุดในการลงทุนคือเมื่อวาน เวลาที่ดีที่สุดอันดับสองคือตอนนี้ ยิ่งเริ่มลงทุนเร็วเท่าไร ยิ่งดีเท่านั้น',
+		quoteAuthor: 'Warren Buffett',
+		quoteRole: 'นักธุรกิจและนักลงทุน',
+		questionLabel: 'คำถาม',
+		questionOf: 'จาก',
+		nextBtn: 'ถัดไป',
+		matchScore: 'คะแนนความเข้ากัน',
+		goToSite: 'ไปที่เว็บไซต์',
+		tryAgain: 'ลองอีกครั้ง',
+		backToStart: 'กลับไปยังจุดเริ่มต้น',
+		title: ['นักจับคู่', 'การลงทุน']
 	}
 };
 
